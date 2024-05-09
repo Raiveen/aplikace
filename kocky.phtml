@@ -1,0 +1,32 @@
+<?php
+   require("html_top.phtml");
+?>
+
+<h2>Kočky k adopci</h2>
+<table>
+      <tbody>
+
+<?php foreach ($kocky as $kocka) { ?>
+<div id="kocky"><tr> 
+   <td><img src="./custom/kockatest.jpg" width="325" height="200"></td>
+        <!-- <td><?= $kocka["obrazek"] ?></td> -->
+        <td><?= $kocka["jmeno"] ?></td>
+        <td><?= $kocka["vek"] ?></td>
+        <td><?= $kocka["barva"] ?></td>
+        <td><?= $kocka["pohlavi"] ? "Samec" : "Samice"?></td> 
+        <td><?= $kocka["ockovani"] ? "Ano" : "Ne"?></td>
+        <td><?= $kocka["kastrace"] ? "Ano" : "Ne"?></td>
+        <td><?= $kocka["popisek"] ?></td>
+        
+    </tr>
+   </div>    
+    
+
+<?php } ?>
+
+</tbody>
+</table>
+
+<?php
+   require("html_bottom.phtml");
+?>

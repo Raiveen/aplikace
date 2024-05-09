@@ -1,0 +1,59 @@
+<?php
+   require("html_top.phtml");
+?>
+
+<h2>Darovat kočku</h2>
+<form method="post">
+      <input type="hidden" name="ID_s" value="<?= $kocka["id_kocka"] ?>">
+      <div>
+         <label for="jmeno">Jméno</label>
+         <input type="text" name="jmeno" id="jmeno">
+      </div>
+
+      <div>
+         <label for="barva">Barva</label>
+         <input type="text" name="barva" id="barva">
+      </div>
+
+      <div>  
+         <label>Pohlaví</label>
+         <input type="radio" name="pohlavi" id="pohlavim">
+         <label for="pohlavi">Samec</label>
+         <input type="radio" name="pohlavi" id="pohlaviz">
+         <label for="pohlavi">Samice</label>
+      </div>
+
+      <div>
+         <label for="vek">Věk</label>
+         <input type="text" name="vek" id="vek">
+      </div>
+
+      <div>
+         <label for="Ockovani">Očkování</label>
+         <input type="checkbox" name="Ockovani" id="Ockovani">
+      </div>
+
+      <div>
+         <label for="kastrace">Kastrace</label>
+         <input type="checkbox" name="kastrace" id="kastrace">
+      </div>
+
+      <div>
+         <label for="popisek">Popisek</label>
+         <textarea name="popisek" id="popisek" cols="30" rows="3"></textarea>
+      </div>
+
+      <div>
+         <label for="obrazek">Obrázek</label>
+         <input type="file" name="obrazek" id="obrazek">
+      </div>
+
+      <input type="submit" value="Uložit">
+
+   </form>
+
+
+
+<?php
+   require("html_bottom.phtml");
+?>
