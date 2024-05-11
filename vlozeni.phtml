@@ -1,9 +1,22 @@
 <?php
    require("html_top.phtml");
+
+   $nazev = "custom";
+  
+
+    if (!file_exists($nazev)) {
+      mkdir($nazev);
+    }
+
+    $maxvel = 2;
+    $typy = [
+        "image/jpeg",
+        "image/png"
+    ];
 ?>
 
 <h2>Darovat kočku</h2>
-<form method="post">
+<form method="post" enctype="multipart/form-data">
       <input type="hidden" name="ID_s" value="<?= $kocka["id_kocka"] ?>">
       <div>
          <label for="jmeno">Jméno</label>
@@ -45,15 +58,58 @@
 
       <div>
          <label for="obrazek">Obrázek</label>
-         <input type="file" name="obrazek" id="obrazek">
+         
+         <input type="hidden" name="MAX_FILE_SIZE" value="<?= ($maxvel * 1024 * 1024) ?>">
+      <input type="file" name="obrazek" id="obrazek" accept="<?= implode(",", $typy) ?>">
       </div>
 
       <input type="submit" value="Uložit">
 
    </form>
+   <?php
+    $nazev = "custom";
+  
 
+    if (!file_exists($nazev)) {
+      mkdir($nazev);
+    }
+    
+
+      if (isset($_FILES["obrazek"])) {
+        if ($_FILES["obrazek"]["error"] == 0) {
+          if (in_array($_FILES["obrazek"]["type"], $typy)) {
+            if ($_FILES["obrazek"]["size"] <= $maxvel * (1024 * 1024)) {
+                if(file_exists($nazev . "/" . $_FILES["obrazek"]["name"])){
+                    echo "<p>obrazek již existuje!</p>";
+                }
+              move_uploaded_file($_FILES["obrazek"]["tmp_name"], 
+                      $nazev . "/" . $_FILES["obrazek"]["name"]);
+            }
+            else {
+              echo "<p>obrazek je příliš velký!</p>";
+            }
+          }
+          else {
+            echo "<p>Nevhodný formát obrazku!</p>";
+          }
+        }
+        else {
+          switch ($_FILES["obrazek"]["error"]) {
+            case 2:
+              echo "<p>obrazek je příliš velký!</p>";
+            break;
+  
+            default:
+              echo "<p>Při uploadu obrazku došlo k chybě!</p>";
+            break; 
+          }
+        }
+      }
+    ?>
 
 
 <?php
+
+
    require("html_bottom.phtml");
 ?>

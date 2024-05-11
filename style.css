@@ -43,6 +43,48 @@ body {
     list-style: none;
   }
 
-  h1 {
-    padding: 10px;
-  border: 1px solid black; }
+
+
+td {
+  display: grid;
+}
+
+  table{
+    width: 312px;
+  height: 445px;
+  overflow: hidden;
+  text-align: center;
+  border: solid;
+  border-color: rgba(165, 165, 165, 0.818);
+  padding-right: 10%;
+  display: inline-block;
+  margin-left: 3%;
+}
+
+form div {
+  margin-top: 5px;
+}
+
+label:first-child {
+  display: inline-block; /* můžeme nastavit šířku a zároveň zůstane na řádku se vstupním prvkem */
+  width: 120px;
+}
+input[type=submit] {
+  padding: 10px;
+}
+[required] {
+  border: 3px red solid;
+}
+input[type=radio]:checked + label {
+  font-weight: bold;
+}
+input[type=checkbox] + label {
+  padding-left: 40px;
+  background-image: url(./off-button.png);
+  background-repeat: no-repeat;
+  background-size: 32px auto;
+  background-position: left center;
+}
+input[type=checkbox]:checked + label {
+  background-image: url(./on-button.png);
+}
