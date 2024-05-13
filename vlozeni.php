@@ -5,4 +5,4 @@
  
 require("vlozeni.phtml");
 if (isset($_POST["jmeno"])) {
-vlozkocku($db, $_POST);}
+vlozkocku($db, $_POST, $_FILES);}

@@ -12,15 +12,18 @@ function vratkocky($db) {
     return $kocky;
 }
 
-function vlozkocku($db, $udajekocky) {
+function vlozkocku($db, $udajekocky, $udajeobrazku) {
     $sqlVlozeni = "
       INSERT INTO kocky
       (jmeno, barva, pohlavi, vek, ockovani, kastrace, popisek, obrazek)
-      VALUES ('{$udajekocky["jmeno"]}', '{$udajekocky["barva"]}', '{$udajekocky["pohlavi"]}', '{$udajekocky["vek"]}', '{$udajekocky["ockovani"]}', '{$udajekocky["kastrace"]}', '{$udajekocky["popisek"]}', '{$udajekocky["obrazek"]}')
+      VALUES ('{$udajekocky["jmeno"]}', '{$udajekocky["barva"]}', '{$udajekocky["pohlavi"]}', '{$udajekocky["vek"]}', '". (isset($udajekocky["ockovani"]) ? 1 : 0) ."', '". (isset($udajekocky["kastrace"]) ? 1 : 0) ."', '{$udajekocky["popisek"]}', '{$udajeobrazku["obrazek"]["name"]}')
    ";
-
+   move_uploaded_file($_FILES["obrazek"]["tmp_name"], 
+   "custom" . "/" . $_FILES["obrazek"]["name"]);
    mysqli_query($db, $sqlVlozeni);
    // přesměrování
    header("Location: kocky.php");
    exit; // ukončí vykonávání skriptu za tímto příkazem
 }
+
+
